@@ -407,7 +407,8 @@ class Figure(Element):
 
     def _repr_html_(self, **kwargs) -> str:
         """Displays the Figure in a Jupyter notebook."""
-        html = escape(self.render(**kwargs))
+        self.ratio = kwargs.get('ratio', 1.0)
+        html = escape(self.render())
         if self.height is None:
             iframe = (
                 '<div style="width:{width};">'
